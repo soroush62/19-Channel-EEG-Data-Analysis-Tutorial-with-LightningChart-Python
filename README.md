@@ -1,0 +1,1 @@
+# 19-Channel-EEG-Data-Analysis-Tutorial-with-LightningChart-Python
