@@ -268,5 +268,3 @@ This tutorial demonstrates the power of LightningChart Python for EEG data analy
 - EEG data analysis plays a critical role in neuroscience, diagnostics, and cognitive studies.
 - LightningChart offers robust tools for visualizing large, multi-channel datasets in real-time.
 - From box plots to 3D brain models, these visualizations enhance our understanding of EEG signals.
-
-For further exploration, consider integrating machine learning models to predict cognitive states based on EEG patterns!
