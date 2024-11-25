@@ -110,6 +110,7 @@ data = pd.read_csv(file_path, header=None, names=channel_names, sep=',')
 LightningChart enables us to create a variety of visualizations to analyze telemetry data effectively. Let’s look at each chart created in this project and interpret the results.
 
 ### 1. **Box Plot: Amplitude Distribution Across Channels**
+
 #### Description
 The box plot displays the amplitude distribution for each EEG channel. The X-axis represents the EEG channels (e.g., Fp1, Fp2, F3, etc.), and the Y-axis shows the amplitude range. Each box represents the interquartile range (IQR) of the data for a channel, with the median marked inside. Outliers are plotted as individual red points, making it easy to spot abnormal amplitudes.
 
@@ -132,20 +133,22 @@ chart.open()
 ```
 ![](Images/BoxPlot.png)
 
----
 
 ### 2. **Heatmap: Correlation Matrix of EEG Channels**
-#### Description
+
+### Description
 This heatmap visualizes the correlation coefficients between EEG channels. Channels with strong positive correlations are marked in red, and negative correlations are in blue. The X and Y axes represent EEG channels, and the grid cells indicate the degree of correlation.
 
-#### Results
+### Results
 - Channels like **F3-F4** and **C3-C4** (which are symmetrical across the brain) show strong positive correlations, as expected due to their spatial and functional proximity.
 - Weak or negative correlations between distant channels (e.g., Fp1-T6) indicate less connectivity or interaction.
+- Patterns in the correlation matrix highlight interdependencies among brain regions during cognitive tasks.
 
-#### Use Cases
+### Use Cases
 - **Brain Connectivity Studies**: Analyze functional connectivity across regions for tasks like arithmetic or memory recall.
 - **Feature Selection**: Correlated channels can be grouped to reduce redundancy in machine learning models.
-- 
+- **Clinical Use**: Detect abnormal connectivity patterns, such as in traumatic brain injury or autism spectrum disorders.
+
 **Script Summary**:
 ```python
 heatmap_series = chart.add_heatmap_grid_series(columns=19, rows=19)
@@ -154,18 +157,21 @@ chart.open()
 ```
 ![](Images/CorrelationMatrix.png)
 
----
 
 ### 3. **Histograms: Amplitude Distributions for Each Channel**
-#### Description
-Histograms show the amplitude distribution for individual EEG channels. Each chart represents a channel, with bins displaying the frequency of amplitude values within specific ranges.
 
-#### Results
+### Description
+Histograms show the amplitude distribution for individual EEG channels. Each chart represents a channel, with bins displaying the frequency of amplitude values within specific ranges. The intensity of color (from blue to red) reflects the density of values.
+
+### Results
 - Channels like **C3** and **C4** exhibit higher counts of mid-range amplitudes, indicating consistent activity.
+- Frontal channels (**Fp1, Fp2**) show lower amplitudes compared to occipital regions (**O1, O2**), reflecting differences in brain activity patterns.
+- Skewed distributions or sharp peaks may indicate dominant brainwave activity in specific channels.
 
-#### Use Cases
+### Use Cases
 - **Analyzing Brainwave Dominance**: Identify dominant frequency ranges for specific channels.
 - **Outlier Detection**: Detect unusual peaks caused by noise or artifacts.
+- **Clinical Diagnostics**: Highlight amplitude patterns indicative of brain disorders like epilepsy or depression.
 
 **Script Summary**:
 ```python
@@ -179,14 +185,20 @@ dashboard.open()
 ---
 
 ### 4. **Power Spectral Density (PSD) Analysis**
-#### Description
-The PSD chart decomposes EEG signals into their frequency components using Welch’s method.
 
-#### Results
-- Peaks in alpha and beta bands indicate dominant brainwave activity during cognitive tasks.
+### Description
+The PSD chart decomposes EEG signals into their frequency components using Welch’s method. The X-axis shows the frequency in Hz, and the Y-axis represents the logarithmic power spectral density (log(uV²/Hz)). Each line corresponds to a different channel.
 
-#### Use Cases
+### Results
+- Channels exhibit peaks in the **alpha (8–12 Hz)** and **beta (12–30 Hz)** bands, indicating dominant brainwave activity during cognitive tasks.
+- Higher activity in frontal channels (**Fp1, Fp2**) in the alpha band aligns with mental relaxation during arithmetic preparation.
+- Variability in beta bands may indicate active problem-solving or concentration.
+
+### Use Cases
 - **Brainwave Analysis**: Study activity in alpha, beta, delta, and gamma bands for cognitive and emotional states.
+- **Task Monitoring**: Detect changes in brainwave activity during specific tasks or stimuli.
+- **Clinical Use**: Analyze band power differences in neurological conditions like ADHD or Alzheimer’s.
+
 
 **Script Summary**:
 ```python
@@ -200,14 +212,19 @@ chart.open()
 ---
 
 ### 5. **Stacked Area Chart: Normalized EEG Amplitude Over Time**
-#### Description
-The stacked area chart visualizes how the normalized EEG amplitude varies over time across all channels.
 
-#### Results
-- Spikes correspond to task-related brain activity.
+### Description
+The stacked area chart visualizes how the normalized EEG amplitude varies over time across all channels. The X-axis represents time (downsampled for efficiency), while the Y-axis shows the log-normalized amplitude. Each channel contributes a stacked segment, allowing comparison of activity levels over time.
 
-#### Use Cases
-- **Time-Series Analysis**: Track changes in brain activity over time.
+### Results
+- Consistent activity is observed across channels, with occasional spikes corresponding to task-related brain activity.
+- Channels like **T3** and **T4** (temporal regions) show higher spikes, possibly due to cognitive load during the arithmetic task.
+- Decreasing trends may indicate relaxation or mental fatigue toward the end of the task.
+
+### Use Cases
+- **Time-Series Analysis**: Track changes in brain activity over time, especially during specific tasks.
+- **Task State Monitoring**: Identify when participants are most engaged or fatigued.
+- **Feature Extraction**: Generate time-series features for machine learning applications.
 
 **Script Summary**:
 ```python
@@ -219,14 +236,20 @@ chart.open()
 ---
 
 ### 6. **Real-Time EEG Visualization on a 3D Brain Model**
-#### Description
-This dynamic visualization maps EEG amplitudes to corresponding electrode positions on a 3D brain model.
 
-#### Results
-- High activity observed in frontal regions (**Fp1, Fp2**) during mental preparation.
+### Description
+This dynamic visualization maps EEG amplitudes to corresponding electrode positions on a 3D brain model. Color intensity indicates the amplitude, transitioning from blue (low) to red (high). The brain model rotates for an interactive view of activity patterns.
 
-#### Use Cases
+### Results
+- High activity is observed in frontal regions (**Fp1, Fp2**) during the initial stages, corresponding to mental preparation.
+- Temporal regions (**T3, T4**) become more active during arithmetic tasks, indicating cognitive processing.
+- Occipital regions (**O1, O2**) show minimal activity, as visual processing is not involved in this task.
+
+### Use Cases
 - **Real-Time Monitoring**: Visualize live EEG data during experiments or medical diagnostics.
+- **Brain-Computer Interfaces (BCI)**: Map real-time brain activity to control external devices.
+- **Education and Training**: Demonstrate brain activity for neuroscience education or clinical training.
+
 
 **Script Summary**:
 ```python
