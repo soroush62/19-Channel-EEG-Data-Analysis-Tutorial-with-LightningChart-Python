@@ -1,6 +1,6 @@
 # 19-Channel EEG Data Analysis Tutorial with LightningChart Python
 
-## Introduction to EEG Data Analysis
+## Introduction to EEG Data Analysis 
 
 ### What is EEG?
 Electroencephalography (EEG) is a non-invasive method used to measure electrical activity in the brain. It records brainwaves through electrodes placed on the scalp and has become an essential tool in neuroscience, medicine, and cognitive research.
